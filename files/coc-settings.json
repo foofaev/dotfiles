@@ -1,0 +1,7 @@
+{
+  "solargraph.diagnostics": true,
+  "diagnostic-languageserver.filetypes": {
+    "php": "phpcs"
+  },
+  "eslint.filetypes": ["typescript", "javascript", "typescriptreact", "javascriptreact"]
+}
