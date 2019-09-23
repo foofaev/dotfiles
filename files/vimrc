@@ -110,6 +110,7 @@ Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'leafgarland/typescript-vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
@@ -353,6 +354,8 @@ augroup FileTypeTetect
   " au BufEnter *.py setl ts=4 sw=4 sts=4
   " autocmd BufEnter *.php setlocal ts=4 sw=4 sts=4
   filetype plugin indent on
+  autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+  autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   autocmd BufEnter *.js setlocal ts=4 sw=4 sts=4
   autocmd BufEnter *.java setlocal ts=4 sw=4 sts=4
   autocmd BufEnter Makefile setlocal ts=4 sw=4 noexpandtab

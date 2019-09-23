@@ -3,6 +3,7 @@
 .vagrant
 *.retry
 *.log
+.DS_Store
 TAGS
 
 fixtures/_build
