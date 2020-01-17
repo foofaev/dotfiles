@@ -4,9 +4,6 @@ setglobal pastetoggle=<F2>
 set ttyfast
 set lazyredraw
 
-let g:python_host_skip_check=1
-let g:loaded_python3_provider=1
-
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -49,6 +46,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'nanotech/jellybeans.vim'
+" Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
 Plug 'dyng/ctrlsf.vim'
 Plug 'liuchengxu/eleline.vim'
@@ -265,9 +263,9 @@ nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
 nnoremap <leader>b :Buffers<CR>
 
-vmap <leader>y "*y
-nmap <leader>y "*Y
-nmap <leader>p "*p
+vmap <leader>y "+y
+nmap <leader>y "+Y
+nmap <leader>p "+p
 
 """ Plugin Settings
 

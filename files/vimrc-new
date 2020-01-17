@@ -1,0 +1,640 @@
+"  Vim plug
+" https://github.com/junegunn/vim-plug
+" ------------------------------------------------------------------------------
+
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+" Theme
+" ------------------------------------------------------------------------------
+
+Plug 'simonsmith/material.vim'
+Plug 'nanotech/jellybeans.vim'
+
+" tmux
+" ------------------------------------------------------------------------------
+
+if executable('tmux')
+  " Navigate between vim and tmux splits
+  Plug 'christoomey/vim-tmux-navigator'
+  " Restore `FocusLost` and `FocusGained` events in tmux
+  Plug 'tmux-plugins/vim-tmux-focus-events'
+endif
+
+" Finding and replacing
+" ------------------------------------------------------------------------------
+
+" Fuzzy finding anything
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+" fzf integration for Vim
+Plug 'junegunn/fzf.vim'
+" async search
+Plug 'dyng/ctrlsf.vim'
+" Viewer & Finder for LSP symbols and tags
+Plug 'liuchengxu/vista.vim'
+
+" File management
+" ------------------------------------------------------------------------------
+
+" File browser
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Language pack
+" ------------------------------------------------------------------------------
+
+" Syntax and highlighting for my languages
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'othree/html5.vim'
+Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
+
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'chr4/nginx.vim'
+
+Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
+Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
+
+Plug 'jwalton512/vim-blade', { 'for': 'php' }
+Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+Plug 'noahfrederick/vim-composer', { 'for': 'php' }
+Plug 'noahfrederick/vim-laravel', { 'for': 'php' }
+
+Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
+
+Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
+Plug 'shime/vim-livedown', { 'for': 'markdown' }
+
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
+Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
+Plug 'kovisoft/slimv', { 'for': ['clojure', 'scheme', 'racket'] }
+Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
+
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'jparise/vim-graphql'
+
+
+" Editing
+" ------------------------------------------------------------------------------
+
+" Allow plugins to be repeated with dot
+Plug 'tpope/vim-repeat'
+" Comment out blocks of code
+Plug 'tpope/vim-commentary'
+" https://github.com/tpope/vim-repeat. Plugins can use dot
+Plug 'tpope/vim-repeat'
+" Pairs of handy bracket mappings
+Plug 'tpope/vim-unimpaired'
+" Autoclose parentheses
+Plug 'cohama/lexima.vim'
+
+" Text objects
+" ------------------------------------------------------------------------------
+
+" Improve text objects for arguments, brackets etc
+" Add various text objects
+Plug 'wellle/targets.vim'
+
+" General
+" ------------------------------------------------------------------------------
+
+Plug 'tpope/vim-sensible'
+" Set spaces and other settings on a per project basis
+Plug 'editorconfig/editorconfig-vim'
+" Whitespace removal
+Plug 'ntpeters/vim-better-whitespace'
+" Fancy start screen
+Plug 'mhinz/vim-startify'
+
+" Refactoring
+" ------------------------------------------------------------------------------
+
+" Make it easy to add/remove/change brackets, quotes etc
+Plug 'tpope/vim-surround'
+" Siblime style multicursor
+Plug 'terryma/vim-multiple-cursors'
+
+" Status bar
+" ------------------------------------------------------------------------------
+
+Plug 'liuchengxu/eleline.vim'
+
+" Snippets
+" ------------------------------------------------------------------------------
+
+Plug 'honza/vim-snippets'
+
+" Git
+" ------------------------------------------------------------------------------
+
+Plug 'tpope/vim-fugitive'
+
+" HTML/CSS
+" ------------------------------------------------------------------------------
+
+Plug 'lepture/vim-jinja', { 'for': 'jinja' }
+Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
+Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+
+" Test and Debug
+" ------------------------------------------------------------------------------
+
+Plug 'joonty/vdebug', { 'on': 'VdebugStart' }
+Plug 'janko-m/vim-test'
+
+" Coc
+" ------------------------------------------------------------------------------
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+      \ 'coc-tsserver',
+      \ 'coc-prettier',
+      \ 'coc-html',
+      \ 'coc-lists',
+      \ 'coc-phpls',
+      \ 'coc-sh',
+      \ 'coc-css',
+      \ 'coc-vimlsp',
+      \ 'coc-go',
+      \ 'coc-elixir',
+      \ 'coc-json',
+      \ 'coc-eslint',
+      \ 'coc-python',
+      \ 'coc-java',
+      \ 'coc-jest',
+      \ 'coc-solargraph',
+      \ 'coc-yaml',
+      \ 'coc-highlight',
+      \ 'coc-snippets',
+      \ 'coc-docker',
+      \ 'coc-diagnostic',
+      \]
+
+" ------------------------------------------------------------------------------
+"
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#end()
+
+" Shortcut for checking if a plugin is loaded
+function! s:has_plugin(plugin)
+  let lookup = 'g:plugs["' . a:plugin . '"]'
+  return exists(lookup)
+endfunction
+
+"  General config
+" ------------------------------------------------------------------------------
+
+" Theme
+" augroup nord-overrides
+"   autocmd!
+"   autocmd ColorScheme nord highlight VertSplit ctermbg=NONE ctermfg=8 guibg=NONE guifg=#434C5E
+"   autocmd ColorScheme nord highlight jsGlobalObjects ctermbg=NONE ctermfg=15 guibg=NONE guifg=#B48EAD
+"   autocmd ColorScheme nord highlight jsThis ctermbg=NONE ctermfg=11 guibg=NONE guifg=#BF616A
+"   autocmd ColorScheme nord highlight jsParensError ctermbg=NONE ctermfg=6 guibg=NONE guifg=#ECEFF4
+"   autocmd ColorScheme nord highlight cssBraceError ctermbg=NONE ctermfg=6 guibg=NONE guifg=#ECEFF4
+" augroup END
+
+" if s:has_plugin('material.vim')
+"   let g:material_theme_style = 'palenight'
+" end
+
+" set background=dark
+" silent! colorscheme material
+silent! colorscheme jellybeans
+let g:jellybeans_use_term_italics = 1
+
+"Use 24-bit (true-color) mode in Vim/Neovim;
+if (has("termguicolors"))
+  set termguicolors
+endif
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+" ------------------------------------------------------------------------------
+
+" Set <space> to leader
+let mapleader = "\<Space>"
+
+" Turn off swapfiles
+set nobackup
+set nowritebackup
+set nowb
+set noswapfile
+
+" Make it obvious where 120 characters is
+set textwidth=120
+
+" With :set hidden, opening a new file when the current buffer has unsaved
+" changes causes files to be hidden instead of closed
+set hidden
+
+" Lazyredraw attempts to solve Vim lag by reducing the amount of
+" processing required. When enabled, any action that is not typed
+" will not cause the screen to redraw
+set lazyredraw
+
+" Highlight current line
+set cursorline
+
+" Indent using two spaces.
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+
+" Use spaces, not tabs
+set expandtab
+
+" Always show sign column for git icons
+set signcolumn=yes
+
+" wrap lines
+set wrap
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Ignore case of searches
+set ignorecase
+
+" If a pattern contains an uppercase letter
+" it is case sensitive, otherwise, it is not
+set smartcase
+
+" Line number
+set number
+
+setglobal nocompatible
+setglobal pastetoggle=<F2>
+
+set ttyfast
+
+let g:python_host_skip_check=1
+let g:loaded_python3_provider=1
+
+
+
+" https://github.com/vim/vim/blob/master/runtime/doc/russian.txt
+" Enable hotkeys for Russian layout
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+" set visualbell
+set completeopt=noinsert,menuone,noselect
+set complete+=kspell
+
+if has('mouse')
+  set mouse=a
+endif
+
+" if has("clipboard")
+"   set clipboard=unnamed " copy to the system clipboard
+
+"   if has("unnamedplus") " X11 support
+"     set clipboard+=unnamedplus
+"   endif
+" endif
+
+set ttyfast
+
+set shortmess+=c
+
+set nofoldenable
+set linebreak
+set hlsearch
+
+" display incomplete commands
+set showcmd
+
+" Automatically :write before running commands
+set autowrite
+
+set updatetime=300
+set cmdheight=2
+
+" Start scrolling before cursor gets to the edge
+set scrolloff=3
+set sidescrolloff=15
+set sidescroll=1
+
+" Persistent Undo
+" Keep undo history across sessions, by storing in file.
+" Only works all the time.
+if has('persistent_undo')
+  silent !mkdir /tmp/.vim/backups > /dev/null 2>&1
+  set undodir=/tmp/.vim/backups
+  set undofile
+endif
+
+""" Basics Keymaps
+" ------------------------------------------------------------------------------
+
+" Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with line wrapping on, this can cause the cursor to actually skip a few lines on the screen because it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down' to mean the next line on the screen
+nmap j gj
+nmap k gk
+
+" Map ctrl-movement keys to window switching
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+
+" Edit .vimrc
+map <leader>vl :vsp $MYVIMRC<CR>
+map <leader>vr :source $MYVIMRC<CR>
+
+""" Plugins Keymaps
+
+nmap <C-m> :NERDTreeFind<CR>
+nmap <silent> <leader><leader> :NERDTreeToggle<CR>
+
+nnoremap <leader>b :Buffers<CR>
+
+""" Plugin Settings
+" ------------------------------------------------------------------------------
+
+let NERDTreeShowHidden=1
+
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toc_autofit = 1
+
+let g:vista_default_executive = 'coc'
+
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+let test#strategy = "neovim"
+
+let g:vim_markdown_folding_disabled = 1
+
+" format the entire file
+nnoremap ff :normal! gg=G``<CR>
+
+" set text wrapping toggles
+nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
+
+" find merge conflict markers
+nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+" use RG only to search in file content
+command! -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>),
+  \   1,
+  \   {'options': '--delimiter : --nth 2..'})
+
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>o :GFiles .<CR>
+nnoremap <leader>fc :Commits<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fa :Rg<CR>
+
+let NERDTreeIgnore = ['\.pyc$', '\.retry$']
+
+nmap <silent> // :nohlsearch<CR>
+noremap <leader>hl :set hlsearch! hlsearch?<CR>
+
+" Allows you to enter sudo pass and save the file
+" " when you forgot to open your file with sudo
+cmap w!! %!sudo tee > /dev/null %
+
+" nnoremap <silent> <bs> <C-w><Left>
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Open new split for C+hjkl, if split doesnt exist
+map <silent> <C-h> :call WinMove('h')<CR>
+map <silent> <C-j> :call WinMove('j')<CR>
+map <silent> <C-k> :call WinMove('k')<CR>
+map <silent> <C-l> :call WinMove('l')<CR>
+function! WinMove(key)
+  let t:curwin = winnr()
+  exec "wincmd ".a:key
+    if (t:curwin == winnr())
+      if (match(a:key,'[jk]'))
+        wincmd v
+      else
+        wincmd s
+      endif
+   exec "wincmd ".a:key
+  endif
+endfunction
+
+"""" COC
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+let g:coc_snippet_next = '<tab>'
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+"
+" " Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+"" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+"" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+"" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+"" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+"" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+"" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+"" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+"" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+"" Search workspace symbols
+"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+"" Do default action for next item.
+"nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+"" Do default action for previous item.
+"nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+"" Resume latest coc list
+"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+vmap <leader>y "+y
+nmap <leader>y "+Y
+nmap <leader>p "+p
+
+" " Output the current syntax group
+" nnoremap <f10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
+
+" Automatic commands
+" ------------------------------------------------------------------------------
+
+" Open help in a vertical split
+augroup vimrc-help
+  autocmd!
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | setlocal relativenumber | endif
+augroup END
+
+augroup file-types
+  autocmd!
+
+  " Override some syntaxes so things look better
+  autocmd BufEnter *.js setlocal ts=4 sw=4 sts=4
+  autocmd BufEnter *.java setlocal ts=4 sw=4 sts=4
+  autocmd BufEnter Makefile setlocal ts=4 sw=4 noexpandtab
+  autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
+  autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
+  autocmd BufNewFile,BufRead *.jsh setlocal filetype=java
+
+  " Use JS snippets in TS
+  autocmd FileType typescript,typescript.tsx,typescriptreact call UltiSnips#AddFiletypes('javascript.typescript')
+augroup END
+
+" Periodically check for file changes
+augroup checktime
+  autocmd!
+  autocmd CursorHold * silent! checktime
+augroup END
+
+" Resize splits when vim changes size (like with tmux opening/closing)
+augroup auto-resize
+  autocmd!
+  autocmd VimResized * wincmd =
+augroup END
+
+" ------------------------------------------------------------------------------
