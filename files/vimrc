@@ -14,6 +14,8 @@ call plug#begin('~/.vim/plugged')
 " ------------------------------------------------------------------------------
 
 Plug 'nanotech/jellybeans.vim'
+Plug 'cocopon/iceberg.vim'
+Plug 'logico/typewriter-vim'
 
 " tmux
 " ------------------------------------------------------------------------------
@@ -299,6 +301,8 @@ nnoremap <leader>b :Buffers<CR>
 " ------------------------------------------------------------------------------
 
 let NERDTreeShowHidden=1
+let NERDTreeRemoveFileCmd='gio trash '
+let NERDTreeRemoveDirCmd='gio trash '
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
