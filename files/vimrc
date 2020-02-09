@@ -300,18 +300,23 @@ nnoremap <leader>b :Buffers<CR>
 """ Plugin Settings
 " ------------------------------------------------------------------------------
 
-let NERDTreeShowHidden=1
+""" NERDTree
+let NERDTreeShowHidden = 1
 
+" remove files to trash on linux
 if executable('gio')
   let NERDTreeRemoveFileCmd='gio trash '
   let NERDTreeRemoveDirCmd='gio trash '
 endif
 
+" remove files to trash on mac
 if executable('rmtrash')
   let NERDTreeRemoveFileCmd='rmtrash '
   let NERDTreeRemoveDirCmd='rmtrash '
 endif
 
+""" Startify
+" don't change dir to opened file
 let g:startify_change_to_dir = 0
 
 let g:vim_markdown_frontmatter = 1
@@ -492,7 +497,7 @@ nmap <leader>p "+p
 " Automatic commands
 " ------------------------------------------------------------------------------
 
-augroup FileTypeTetect
+augroup FileTypeDetect
   autocmd!
   filetype plugin indent on
   autocmd BufEnter *.js setlocal ts=4 sw=4 sts=4
