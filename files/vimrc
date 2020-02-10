@@ -81,8 +81,6 @@ Plug 'tpope/vim-repeat'
 " Comment out blocks of code
 Plug 'tpope/vim-commentary'
 " https://github.com/tpope/vim-repeat. Plugins can use dot
-Plug 'tpope/vim-repeat'
-" Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
 " Autoclose parentheses
 Plug 'cohama/lexima.vim'
@@ -116,7 +114,7 @@ Plug 'terryma/vim-multiple-cursors'
 " Status bar
 " ------------------------------------------------------------------------------
 
-Plug 'liuchengxu/eleline.vim'
+Plug 'vim-airline/vim-airline'
 
 " Snippets
 " ------------------------------------------------------------------------------
@@ -171,6 +169,9 @@ set termguicolors
 
 " Activate FOCUS mode with F12
 nmap <F12> :Goyo <bar> Limelight!!<CR>"
+
+" add airline coc support
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " ------------------------------------------------------------------------------
 
@@ -307,9 +308,24 @@ nnoremap <leader>b :Buffers<CR>
 """ Plugin Settings
 " ------------------------------------------------------------------------------
 
-let NERDTreeShowHidden=1
-let NERDTreeRemoveFileCmd='gio trash '
-let NERDTreeRemoveDirCmd='gio trash '
+""" NERDTree
+let NERDTreeShowHidden = 1
+
+" remove files to trash on linux
+if executable('gio')
+  let NERDTreeRemoveFileCmd='gio trash '
+  let NERDTreeRemoveDirCmd='gio trash '
+endif
+
+" remove files to trash on mac
+if executable('rmtrash')
+  let NERDTreeRemoveFileCmd='rmtrash '
+  let NERDTreeRemoveDirCmd='rmtrash '
+endif
+
+""" Startify
+" don't change dir to opened file
+let g:startify_change_to_dir = 0
 
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toc_autofit = 1
@@ -366,12 +382,6 @@ cmap w!! %!sudo tee > /dev/null %
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Open new split for C+hjkl, if split doesnt exist
 function! WinMove(key)
@@ -478,16 +488,6 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-
 "" Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
@@ -502,17 +502,12 @@ vmap <leader>y "+y
 nmap <leader>y "+Y
 nmap <leader>p "+p
 
-" " Output the current syntax group
-" nnoremap <f10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
-
 " Automatic commands
 " ------------------------------------------------------------------------------
 
-augroup FileTypeTetect
+augroup FileTypeDetect
   autocmd!
-  " Override some syntaxes so things look better
+  filetype plugin indent on
   autocmd BufEnter *.js setlocal ts=4 sw=4 sts=4
   autocmd BufEnter *.java setlocal ts=4 sw=4 sts=4
   autocmd BufEnter Makefile setlocal ts=4 sw=4 noexpandtab
