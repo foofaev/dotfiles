@@ -17,6 +17,10 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'logico/typewriter-vim'
 
+" distraction free style
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+
 " tmux
 " ------------------------------------------------------------------------------
 
@@ -164,6 +168,9 @@ let g:jellybeans_use_term_italics = 1
 
 "Use 24-bit (true-color) mode in Vim/Neovim;
 set termguicolors
+
+" Activate FOCUS mode with F12
+nmap <F12> :Goyo <bar> Limelight!!<CR>"
 
 " ------------------------------------------------------------------------------
 
