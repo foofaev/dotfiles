@@ -3,5 +3,17 @@
   "diagnostic-languageserver.filetypes": {
     "php": "phpcs"
   },
-  "eslint.filetypes": ["typescript", "javascript", "typescriptreact", "javascriptreact"]
+  "cSpellExt.enableDictionaries": ["russian"],
+  "cSpell.language": "en,ru",
+  "cSpell.words": [
+    "solargraph",
+    "stylelint",
+    "phpcs",
+    "quantron"
+  ],
+  "prettier.printWidth": 120,
+  "prettier.trailingComma": "all",
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true,
+  "prettier.singleQuote": true
 }
