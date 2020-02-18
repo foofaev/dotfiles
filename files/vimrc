@@ -49,8 +49,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx', { 'for': 'typescript' }
 
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
+Plug 'neoclide/vim-jsx-improve', { 'for': 'javascript' }
 
 Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
 

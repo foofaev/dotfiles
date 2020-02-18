@@ -4,6 +4,7 @@
     "php": "phpcs"
   },
   "cSpellExt.enableDictionaries": ["russian"],
+  "cSpell.allowCompoundWords": true,
   "cSpell.language": "en,ru",
   "cSpell.words": [
     "solargraph",
