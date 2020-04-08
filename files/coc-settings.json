@@ -1,17 +1,15 @@
 {
-  "solargraph.diagnostics": true,
-  "diagnostic-languageserver.filetypes": {
-    "php": "phpcs"
-  },
+  "diagnostic.enableSign": true,
+  "diagnostic.enableHighlightLineNumber": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": "# ",
   "cSpellExt.enableDictionaries": ["russian"],
-  "cSpell.allowCompoundWords": true,
-  "cSpell.language": "en,ru",
-  "cSpell.words": [
-    "solargraph",
-    "stylelint",
-    "phpcs",
-    "quantron"
+  "cSpell.enabledLanguageIds": [
+    "markdown",
+    "plaintext",
+    "yml"
   ],
+  "cSpell.language": "en,ru",
   "prettier.printWidth": 120,
   "prettier.trailingComma": "all",
   "prettier.eslintIntegration": true,

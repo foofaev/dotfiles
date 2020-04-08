@@ -1,4 +1,4 @@
-### Based on [dotfiles](https://github.com/mokevnin/dotfiles) by [mokevnin](https://github.com/mokevnin)
+### Based on [dotfiles](https://github.com/mokevnin/dotfiles) by mokevnin
 
 ### Requirements
 
@@ -10,27 +10,19 @@
 
     curl -sL install-node.now.sh | sh
 
-#### Global
-
-* [ripgrep](https://github.com/BurntSushi/ripgrep)
-
-#### Ruby/Rails
-
-* gem install solargraph rubocop
-* gem install rubocop-rspec rubocop-rails rubocop-performance
-
-#### PHP
-
-* composer global require "squizlabs/php_codesniffer=*"
-
-### Setup
-
-```sh
-$ git clone git@github.com:foofaev/dotfiles.git ~/dotfiles 
-$ cd dotfiles
-$ make nvim-install
-$ make dotfiles-install # optional
-```
+### Deps
+  - TODO:
+    - install latest ripgrep using cargo
+    - add cargo bins to PATH
+    - instructions for
+      * [fzf](https://github.com/junegunn/fzf)
+      * [bat](https://github.com/sharkdp/bat)
+      * [fd](https://github.com/sharkdp/fd)
+    - tmux
+    - alacritty
+    - fsevents for mac
+    - lazy nvm and pyenv
+    - gio and rmtrash
 
 ### VIM
 
