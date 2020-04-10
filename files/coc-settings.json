@@ -5,6 +5,10 @@
   "diagnostic.virtualTextPrefix": "# ",
   "cSpellExt.enableDictionaries": ["russian"],
   "cSpell.enabledLanguageIds": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
     "markdown",
     "plaintext",
     "yml"
