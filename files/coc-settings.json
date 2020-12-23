@@ -3,20 +3,91 @@
   "diagnostic.enableHighlightLineNumber": true,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": "# ",
+
   "cSpellExt.enableDictionaries": ["russian"],
-  "cSpell.enabledLanguageIds": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "markdown",
-    "plaintext",
-    "yml"
-  ],
   "cSpell.language": "en,ru",
+
   "prettier.printWidth": 120,
   "prettier.trailingComma": "all",
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+
+  "python.linting.enabled": false,
+
+  "diagnostic-languageserver.debug": true,
+  "diagnostic-languageserver.trace.server": "verbose",
+
+  "diagnostic-languageserver.filetypes": {
+    "python": "flake8"
+  },
+  "diagnostic-languageserver.linters": {
+    "eslint": {
+      "command": "./node_modules/.bin/eslint",
+      "rootPatterns": [
+        ".git"
+      ],
+      "debounce": 100,
+      "args": [
+        "--stdin",
+        "--stdin-filename",
+        "%filepath",
+        "--format",
+        "json"
+      ],
+      "sourceName": "eslint",
+      "parseJson": {
+        "errorsRoot": "[0].messages",
+        "line": "line",
+        "column": "column",
+        "endLine": "endLine",
+        "endColumn": "endColumn",
+        "message": "${message} [${ruleId}]",
+        "security": "severity"
+      },
+      "securities": {
+        "2": "error",
+        "1": "warning"
+      }
+    },
+    "flake8": {
+      "sourceName": "flake8",
+      "sourceNameFilter": true,
+      "command": "poetry",
+      "args": [
+        "run",
+        "flake8",
+        "--format=%(row)d:%(col)d:%(text)s [%(code)s]",
+        "%file"
+      ],
+      "formatPattern": [
+        "^(\\d+?):(\\d+?):(.*)$",
+        {
+          "line": 1,
+          "column": 2,
+          "message": 3
+        }
+      ],
+      "rootPatterns": [".git", "pyproject.toml", "setup.py"],
+      "offsetColumn": 1,
+      "formatLines": 1
+    },
+
+    "diagnostic-languageserver.formatFiletypes": {
+      "python": ["black", "isort", "docformatter"]
+    },
+    "diagnostic-languageserver.formatters": {
+      "black": {
+        "command": "black",
+        "args": ["black", "-q", "-"]
+      },
+      "isort": {
+        "command": "isort",
+        "args": ["-q", "-"]
+      },
+      "docformatter": {
+        "command": "docformatter",
+        "args": ["-"]
+      }
+    } }
 }

@@ -30,6 +30,8 @@ window:
     x: 5
     y: 15
 
+  dynamic_title: true
+
   # Window decorations
   #
   # Available values:
@@ -49,9 +51,6 @@ scrolling:
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
   multiplier: 6
-
-  # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
 
 # Spaces per Tab (changes require restart)
 #
@@ -221,9 +220,6 @@ mouse:
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
-
-
-dynamic_title: true
 
 # Live config reload (changes require restart)
 live_config_reload: true
