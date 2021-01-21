@@ -1,0 +1,16 @@
+{
+  "diagnostic.enableSign": true,
+  "diagnostic.enableHighlightLineNumber": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": "# ",
+
+  "cSpellExt.enableDictionaries": ["russian"],
+  "cSpell.language": "en,ru",
+
+  "prettier.printWidth": 120,
+  "prettier.trailingComma": "all",
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true,
+  "prettier.singleQuote": true,
+  "clangd.path": "/home/foofaev/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
+}
