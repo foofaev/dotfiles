@@ -1,3 +1,3 @@
 return function()
-    cmd("cnoreabbrev psync PackerSync")
+    vim.cmd("cnoreabbrev psync PackerSync")
 end

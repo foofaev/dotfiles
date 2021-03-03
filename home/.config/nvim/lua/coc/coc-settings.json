@@ -12,5 +12,72 @@
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
   "prettier.singleQuote": true,
-  "clangd.path": "/home/foofaev/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
+
+  "git.enableGutters": true,
+
+  "python": {
+    "pythonPath": "./.venv/bin/python",
+    "venvPath": "./.venv",
+    "formatting": {
+      "provider": "autopep8",
+      "autopep8Path": "./.venv/bin/autopep8"
+    },
+    "linting": {
+      "enabled": true,
+      "flake8Enabled": true,
+      "flake8Path": "./.venv/bin/flake8"
+    }
+  },
+
+  "languageserver__backup": {
+    "efm": {
+      "command": "efm-langserver",
+      "args": [
+        "-c",
+        "/home/foofaev/projects/dotfiles/home/.config/nvim/lua/efm-langserver/config.yaml"
+      ],
+      "trace.server": "verbose",
+      "filetypes": []
+    },
+    "dls": {
+      "command": "diagnostic-languageserver",
+      "args": ["--stdio"],
+      "filetypes": [],
+      "initializationOptions": {
+        "linters": {
+          "flake8": {
+            "command": "flake8",
+            "debounce": 100,
+            "args": [
+              "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
+              "-"
+            ],
+            "offsetLine": 0,
+            "offsetColumn": 0,
+            "sourceName": "flake8",
+            "formatLines": 1,
+            "formatPattern": [
+              "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
+              {
+                "line": 1,
+                "column": 2,
+                "security": 3,
+                "message": 4
+              }
+            ],
+            "securities": {
+              "W": "error",
+              "E": "error",
+              "F": "error",
+              "C": "error",
+              "N": "error"
+            }
+          }
+        },
+        "filetypes": {
+          "python": "flake8"
+        }
+      }
+    }
+  }
 }

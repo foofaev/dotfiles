@@ -1,3 +1,9 @@
-vim.g.coc_config_home = "$HOME/.config/nvim/lua/coc/"
+return function()
+  local apply_globals = require("utils").apply_globals
 
-require "coc.coc"
+  apply_globals({
+    coc_config_home = "$HOME/.config/nvim/lua/coc/"
+  })
+
+  require("coc.coc")
+end

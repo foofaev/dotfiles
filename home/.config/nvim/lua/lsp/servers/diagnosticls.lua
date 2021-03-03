@@ -1,45 +1,38 @@
 return function(config, on_attach)
-  config.diagnosticls.setup{
+  config.diagnosticls.setup {
+    filetypes = {};
     init_options = {
-      filetypes = { python = { 'flake8' } },
+      filetypes = { python = { "flake8" } };
       linters = {
-        flake8 = {
-          debounce = 100,
-          sourceName = "flake8",
-          command = "poetry",
-          args = {
-            "run",
-            "flake8",
-            "--format",
-            "%(row)d:%(col)d:%(code)s:%(code)s: %(text)s",
-            "%file",
-          },
-          formatPattern = {
-            "^(\\d+):(\\d+):(\\w+):(\\w).+: (.*)$",
+          flake8 = {
+            command = "flake8",
+            debounce = 100,
+            args = {
+              "--format=%(row)d,%(col)d,%(code).1s,%(code)s= %(text)s",
+              "-"
+            },
+            offsetLine = 0,
+            offsetColumn = 0,
+            sourceName = "flake8",
+            formatLines = 1,
+            formatPattern = {
+              "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
             {
               line = 1,
               column = 2,
-              message = {"[", 3, "] ", 5},
-              security = 4
+              security = 3,
+              message = 4
             }
           },
-          securities = {
-            E = "error",
-            W = "warning",
-            F = "info",
-            B = "hint",
-          },
+            securities = {
+              W = "warning",
+              E = "error",
+              F = "error",
+              C = "error",
+              N = "error"
+            }
+          }
         },
       },
-      formatters = {
-        autopep8 = {
-          command = 'poetry',
-          args = { 'run', 'autopep8', '--aggressive', '--experimental', '--in-place', '%filename' }
-        }
-      },
-      formatFiletypes = {
-        python = 'autopep8'
-      }
     }
-  }
 end
