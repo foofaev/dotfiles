@@ -25,8 +25,6 @@ require("packer").startup({
         use {"neoclide/coc.nvim", branch = "release", config = require("coc")}
         use "antoinemadec/coc-fzf" -- coc and fzf together
 
-        use "OmniSharp/omnisharp-vim"
-
         -- Lua lsp
         -- fzf commands for lsp sources
         -- use {"neovim/nvim-lspconfig", config = require("lsp")}
