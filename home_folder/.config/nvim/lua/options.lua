@@ -1,8 +1,9 @@
-local apply_options = require("utils").apply_options
+local utils = require("utils")
 
-apply_options(
+utils.apply_options(
   {
     -- Boolean value
+    background = "light",
     compatible = false,
     ttyfast = true,
     lazyredraw = true, -- lazyredraw to make macro faster

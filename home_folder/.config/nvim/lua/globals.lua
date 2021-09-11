@@ -14,7 +14,5 @@ apply_globals(
       ['javascript.jsx'] = {'javascript'},
       ['typescript.jsx'] = {'typescript'}
     },
-    jellybeans_use_term_italics = 1,
-    nvcode_termcolors = 256,
   }
 )

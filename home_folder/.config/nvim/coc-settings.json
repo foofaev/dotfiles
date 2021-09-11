@@ -7,7 +7,7 @@
   "cSpellExt.enableDictionaries": ["russian"],
   "cSpell.language": "en,ru",
 
-  "prettier.printWidth": 120,
+  "prettier.printWidth": 100,
   "prettier.trailingComma": "all",
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
@@ -29,15 +29,19 @@
     }
   },
 
-  "languageserver__backup": {
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    },
     "efm": {
       "command": "efm-langserver",
-      "args": [
-        "-c",
-        "/home/foofaev/projects/dotfiles/home/.config/nvim/lua/efm-langserver/config.yaml"
-      ],
       "trace.server": "verbose",
-      "filetypes": []
+      "filetypes": ["python"],
+      "args": ["-c", "/home/foofaev/.config/efm-langserver/config.yaml"]
     },
     "dls": {
       "command": "diagnostic-languageserver",

@@ -23,7 +23,7 @@ function U.map(mode, key, result, opts)
       expr = false
     }
   )
-  fn.nvim_set_keymap(mode, key, result, opts)
+  vim.api.nvim_set_keymap(mode, key, result, opts)
 end
 
 function U.show_doc()

@@ -1,6 +1,4 @@
-local fn = vim.fn
 local cmd = vim.cmd
-local exec = vim.api.nvim_exec
 local utils = require("utils")
 
 -- highlight yanked text
