@@ -2,7 +2,7 @@ prerequisites-install:
 	curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 	apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(shell lsb_release -cs) main"
 	apt-get update
-	apt-get install -yy git curl zsh make rmtrash htop ncdu tldr httpie exuberant-ctags terraform-ls
+	apt-get install -yy git curl zsh make gio htop ncdu tldr httpie exuberant-ctags terraform-ls
 
 ohmyzsh-install:
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
