@@ -1,3 +1,5 @@
+[![Main](https://github.com/foofaev/dotfiles/actions/workflows/main.yml/badge.svg)](https://github.com/foofaev/dotfiles/actions/workflows/main.yml)
+
 ## Requirements
 
 * Ubuntu >= 20.04
