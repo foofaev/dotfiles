@@ -15,20 +15,13 @@ docker-install:
 	sudo sh ./get_docker.sh
 	sudo groupadd docker
 	sudo usermod -aG docker $(USER)
-	newgrp docker 
+	newgrp docker
 
 docker-compose-install:
 	sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	sudo chmod +x /usr/local/bin/docker-compose
 
-nvim-install:
-	mkdir -p ~/.config/nvim
-	ln -sf $(PWD)/home_folder/vimrc ~/.config/nvim/init.vim
-	ln -sf $(PWD)/files/coc-settings.json ~/.config/nvim/coc-settings.json
-	ln -snf $(PWD)/files/vim-ftplugins ~/.config/nvim/ftplugin
-
-nvim-install:
-	ln -s $(PWD)/home_folder/.config/nvim ~/.config/nvim | true
-
 dotfiles-install:
-	 docker run --rm -e RUNNER_PLAYBOOK=dotfiles.yml -v $(HOME):/host/home -v $(CURDIR):/runner/project ansible/ansible-runner
+	touch ~/.zshrc
+	touch ~/.gitconfig
+	docker run --rm -e RUNNER_PLAYBOOK=dotfiles.yml -v $(HOME):/host/home -v $(CURDIR):/runner/project ansible/ansible-runner
