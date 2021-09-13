@@ -1,9 +1,1 @@
-*.swp
-*.swo
-.vagrant
-*.retry
-*.log
-.DS_Store
-TAGS
-
-fixtures/_build
+./home_folder/.config/nvim/plugin

@@ -1,0 +1,29 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-20.04
+    steps:
+
+      - uses: actions/checkout@v2
+      - name: Apt install
+        run: |
+          sudo apt-get update
+          sudo make prerequisites-install OPTIONS="--dry-run"
+      - name: Oh-my-zsh install
+        run: |
+          make ohmyzsh-install
+      - name: asdf install
+        run: |
+          make asdf-install
+      - name: Dotfiles install
+        run: |
+          make dotfiles-install

@@ -1,28 +1,17 @@
-### Based on [dotfiles](https://github.com/mokevnin/dotfiles) by mokevnin
+## Requirements
 
-### Requirements
+* Ubuntu >= 20.04
 
-* Linux or Mac
-* [Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-* make (for automatic installation)
-* git (for automatic installation)
-* [Node.js](https://nodejs.org/en/download/package-manager/) 
-
-    curl -sL install-node.now.sh | sh
-
-### Deps
-  - TODO:
-    - install latest ripgrep using cargo
-    - add cargo bins to PATH
-    - instructions for
-      * [fzf](https://github.com/junegunn/fzf)
-      * [bat](https://github.com/sharkdp/bat)
-      * [fd](https://github.com/sharkdp/fd)
-    - tmux
-    - alacritty
-    - fsevents for mac
-    - lazy nvm and pyenv
-    - gio and rmtrash
+## Setup
+```sh
+make prerequisites-install
+make ohmyzsh-install
+make asdf-install
+make docker-install
+make docker-compose-install
+make nvim-install
+make dotfiles-install
+```
 
 ### VIM
 

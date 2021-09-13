@@ -1,0 +1,25 @@
+---
+
+- hosts: localhost
+  vars:
+    home: /host/home
+    zshrc: '{{ home }}/.zshrc'
+    gitconfig: '{{ home }}/.gitconfig'
+
+  tasks:
+    - name: Update ohmyzsh plugins list
+      ansible.builtin.lineinfile:
+        path: '{{ zshrc }}'
+        state: present
+        line: 'plugins=(git asdf docker)'
+        regexp: '^plugins=\('
+
+    - name: Add pretty gitlog output
+      blockinfile:
+        path: '{{ gitconfig }}'
+        create: yes
+        block: |
+          [pretty]
+              my = format:%C(yellow)%h%C(reset) | %C(dim green)%cd%C(reset) | %C(green)%cr%C(reset) | %C(cyan)%s%C(red)%d%C(red)%C(reset) %C(blue)[%an]%C(reset)
+          [format]
+              pretty = my
