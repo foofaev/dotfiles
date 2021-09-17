@@ -27,3 +27,6 @@ jobs:
       - name: Dotfiles install
         run: |
           make dotfiles-install
+      - name: Link all dots
+        run: |
+          make files-link

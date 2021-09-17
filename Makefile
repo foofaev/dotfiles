@@ -25,3 +25,6 @@ dotfiles-install:
 	touch ~/.zshrc
 	touch ~/.gitconfig
 	docker run --rm -e RUNNER_PLAYBOOK=dotfiles.yml -v $(HOME):/host/home -v $(CURDIR):/runner/project ansible/ansible-runner
+
+files-link:
+	cp -rs $(PWD)/home_folder/. ~/
