@@ -31,7 +31,7 @@ require("packer").startup({
         use {"mhinz/vim-startify", config = require("plugins.vim-startify")}
         use "liuchengxu/eleline.vim"
         -- color scheme
-        use 'ChristianChiarulli/nvcode-color-schemes.vim'
+        use 'arcticicestudio/nord-vim'
 
         use 'pangloss/vim-javascript'
         use {'heavenshell/vim-jsdoc', run = 'make install'}
