@@ -14,11 +14,10 @@ end
 cmd [[packadd packer.nvim]]
 
 -- Configure Neovim to automatically run :PackerCompile whenever plugins.lua is updated with an autocommand:
-utils.au("BufWritePost", "**/nvim/lua/plugins/*.lua", "lua reload()")
 utils.au("BufWritePost", "**/nvim/lua/plugins/*.lua", "PackerCompile")
 
 require("packer").startup({
-    function()
+    function(use)
         -- Packer can manage itself as an optional plugin
         use {"wbthomason/packer.nvim", opt = true, config = require("plugins.packer-nvim")}
 
@@ -42,6 +41,11 @@ require("packer").startup({
 
         use {'chrisbra/csv.vim', ft = {"csv"}}
 
+        use {
+          'pearofducks/ansible-vim',
+          config = function() require('utils').au("BufRead,BufNewFile", "*/ansible/*.yml", "set filetype=yaml.ansible") end
+        }
+
         -- Treesitter
         use {"nvim-treesitter/nvim-treesitter-textobjects"}
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugins.nvim-treesitter")}
@@ -56,7 +60,6 @@ require("packer").startup({
         -- fzf
         use {"junegunn/fzf", run = "./install --all"}
         use {"junegunn/fzf.vim", config = require("plugins.fzf-vim")}
-        use "pechorin/any-jump.vim"
 
         use {'wfxr/minimap.vim'}
 

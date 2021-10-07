@@ -5,10 +5,6 @@ return function()
   local exec = vim.api.nvim_exec
 
   utils.apply_globals({
-    coc_config_home = "$HOME/.config/nvim/coc-settings.json"
-  })
-
-  utils.apply_globals({
     coc_global_extensions = {
       "coc-tsserver",
       "coc-jedi",
@@ -24,7 +20,9 @@ return function()
       "coc-cspell-dicts",
       "coc-yaml",
       "coc-sh",
-      "coc-git"
+      "coc-git",
+      "@yaegassy/coc-ansible",
+      "coc-sql"
     }
   })
 

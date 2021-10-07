@@ -7,7 +7,7 @@
   "cSpellExt.enableDictionaries": ["russian"],
   "cSpell.language": "en,ru",
 
-  "prettier.printWidth": 100,
+  "prettier.printWidth": 120,
   "prettier.trailingComma": "all",
   "prettier.eslintIntegration": true,
   "prettier.stylelintIntegration": true,
