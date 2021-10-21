@@ -176,71 +176,71 @@ function U.rg_word()
   cmd(join("Rg! ", word))
 end
 
-function U.open_file_or_create_new()
-  local path = fn.expand("<cfile>")
-  if not path or path == "" then
-    return false
-  end
+-- function U.open_file_or_create_new()
+--   local path = fn.expand("<cfile>")
+--   if not path or path == "" then
+--     return false
+--   end
 
   -- TODO handle terminal buffers
 
-  if pcall(vim.cmd, "norm!gf") then
-    return true
-  end
+  -- if pcall(vim.cmd, "norm!gf") then
+  --   return true
+  -- end
 
-  local answer = fn.input("Create a new file, (Y)es or (N)o? ")
-  if not answer or string.lower(answer) ~= "y" then
-    return vim.cmd "redraw"
-  end
-  vim.cmd "redraw"
-  local new_path = fn.fnamemodify(fn.expand("%:p:h") .. "/" .. path, ":p")
-  local ext = fn.fnamemodify(new_path, ":e")
+  -- local answer = fn.input("Create a new file, (Y)es or (N)o? ")
+  -- if not answer or string.lower(answer) ~= "y" then
+  --   return vim.cmd "redraw"
+  -- end
+  -- vim.cmd "redraw"
+  -- local new_path = fn.fnamemodify(fn.expand("%:p:h") .. "/" .. path, ":p")
+  -- local ext = fn.fnamemodify(new_path, ":e")
 
-  if ext and ext ~= "" then
-    return vim.cmd("edit " .. new_path)
-  end
+  -- if ext and ext ~= "" then
+  --   return vim.cmd("edit " .. new_path)
+  -- end
 
-  local suffixes = fn.split(vim.bo.suffixesadd, ",")
+  -- local suffixes = fn.split(vim.bo.suffixesadd, ",")
 
-  for _, suffix in ipairs(suffixes) do
-    if fn.filereadable(new_path .. suffix) then
-      return vim.cmd("edit " .. new_path .. suffix)
-    end
-  end
+  -- for _, suffix in ipairs(suffixes) do
+  --   if fn.filereadable(new_path .. suffix) then
+  --     return vim.cmd("edit " .. new_path .. suffix)
+  --   end
+  -- end
 
-  return vim.cmd("edit " .. new_path .. suffixes[1])
-end
+  -- return vim.cmd("edit " .. new_path .. suffixes[1])
+-- end
 
-local function preview_location_callback(_, method, result)
-  if result == nil or vim.tbl_isempty(result) then
-    vim.lsp.log.info(method, 'No location found')
-    return nil
-  end
-  if vim.tbl_islist(result) then
-    vim.lsp.util.preview_location(result[1])
-  else
-    vim.lsp.util.preview_location(result)
-  end
-end
+-- local function preview_location_callback(_, method, result)
+  -- if result == nil or vim.tbl_isempty(result) then
+  --   vim.lsp.log.info(method, 'No location found')
+  --   return nil
+  -- end
+  -- if vim.tbl_islist(result) then
+  --   vim.lsp.util.preview_location(result[1])
+  -- else
+  --   vim.lsp.util.preview_location(result)
+  -- end
+-- end
 
-function U.peek_definition()
-  local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
-end
+-- function U.peek_definition()
+  -- local params = vim.lsp.util.make_position_params()
+  -- return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+-- end
 
-vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
-    if err ~= nil or result == nil then
-      return
-    end
-    if not vim.bo[bufnr].modified then
-      local view = vim.fn.winsaveview()
-      vim.lsp.util.apply_text_edits(result, bufnr)
-      vim.fn.winrestview(view)
-      if bufnr == vim.api.nvim_get_current_buf() then
-        vim.cmd("noautocmd :update")
-      end
-    end
-  end
+-- vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
+  --   if err ~= nil or result == nil then
+  --     return
+  --   end
+  --   if not vim.bo[bufnr].modified then
+  --     local view = vim.fn.winsaveview()
+  --     vim.lsp.util.apply_text_edits(result, bufnr)
+  --     vim.fn.winrestview(view)
+  --     if bufnr == vim.api.nvim_get_current_buf() then
+  --       vim.cmd("noautocmd :update")
+  --     end
+  --   end
+  -- end
 
 function U.rename()
   local current_word = vim.fn.expand("<cword>")
@@ -264,52 +264,52 @@ function U.rename()
   vim.cmd [[startinsert]]
 end
 
-function _G.dump(...)
-  local objects = vim.tbl_map(vim.inspect, {...})
-  print(unpack(objects))
-end
+-- function _G.dump(...)
+  -- local objects = vim.tbl_map(vim.inspect, {...})
+  -- print(unpack(objects))
+-- end
 
-function _G.reload_lsp()
-  lsp.stop_client(lsp.get_active_clients())
-  cmd [[edit]]
-end
+-- function _G.reload_lsp()
+  -- lsp.stop_client(lsp.get_active_clients())
+  -- cmd [[edit]]
+-- end
 
 function _G.open_lsp_log()
   local path = vim.lsp.get_log_path()
   cmd("edit " .. path)
 end
 
-local special_buffers = {
-  'git',
-  'undotree',
-  'help',
-  'startify',
-  'vim-plug',
-  'NvimTree',
-}
+-- local special_buffers = {
+  -- 'git',
+  -- 'undotree',
+  -- 'help',
+  -- 'startify',
+  -- 'vim-plug',
+  -- 'NvimTree',
+-- }
 
-function _G.is_special_buffer()
-  local buftype = api.nvim_buf_get_option(0, 'buftype')
-  if buftype == 'terminal' or buftype == 'quickfix' or buftype == 'help' then
-    return true
-  end
-  local filetype = api.nvim_buf_get_option(0, 'filetype')
-  for _, b in ipairs(special_buffers) do
-    if filetype == b then
-      return true
-    end
-  end
-  return false
-end
+-- function _G.is_special_buffer()
+  -- local buftype = api.nvim_buf_get_option(0, 'buftype')
+  -- if buftype == 'terminal' or buftype == 'quickfix' or buftype == 'help' then
+  --   return true
+  -- end
+  -- local filetype = api.nvim_buf_get_option(0, 'filetype')
+  -- for _, b in ipairs(special_buffers) do
+  --   if filetype == b then
+  --     return true
+  --   end
+  -- end
+  -- return false
+-- end
 
-function _G.check_backspace()
-  local col = vim.fn.col('.') - 1
-  if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-    return true
-  else
-    return false
-  end
-end
+-- function _G.check_backspace()
+  -- local col = vim.fn.col('.') - 1
+  -- if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+  --   return true
+  -- else
+  --   return false
+  -- end
+-- end
 
 function U.au(event, filetype, action)
     vim.cmd("au" .. " " .. event .. " " .. filetype .. " " .. action)
